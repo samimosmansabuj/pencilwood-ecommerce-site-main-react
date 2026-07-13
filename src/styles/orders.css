@@ -1,0 +1,254 @@
+/* ====== PAGE TITLE ====== */
+.orders-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ====== FILTER BUTTONS ====== */
+.orders-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.of-btn {
+    padding: 8px 18px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.of-btn.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.of-btn:hover {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+/* ====== ORDER CARDS ====== */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 18px;
+    transition: transform 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+}
+
+/* ====== ORDER TOP ====== */
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.order-id {
+    font-weight: 600;
+}
+
+.order-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.order-status {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #fff;
+}
+
+.order-status.new { background: #ffc107; color: #333;  }
+.order-status.follow_up { background: #17a2b8; }
+.order-status.confirmed { background: #0d6efd; }
+.order-status.shipped { background: #6610f2; }
+.order-status.delivered { background: #28a745; }
+.order-status.cancelled { background: #dc3545; }
+.order-status.returned { background: #fd7e14; }
+.order-status.refunded { background: #20c997; }
+
+/* ====== ORDER ITEMS ====== */
+.order-items {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+/* multiple products gap */
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.order-item:not(:last-child) {
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 10px;
+}
+
+/* actual product image */
+.oi-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f5f5f5;
+}
+
+.oi-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.oi-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.oi-name {
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.oi-meta {
+    font-size: 14px;
+    color: #666;
+}
+
+/* product row right side */
+.oi-right {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.oi-price {
+    font-weight: 600;
+}
+
+.oi-status {
+    margin-top: 4px;
+}
+/* ====== ORDER BOTTOM ====== */
+.order-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.order-total {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn-view {
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-view:hover {
+    background: #555;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+
+    .order-card {
+        padding: 12px;
+    }
+
+    .orders-list {
+        gap: 12px;
+    }
+
+    .order-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .order-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .orders-filter {
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+
+    .of-btn {
+        padding: 6px 14px;
+        font-size: 14px;
+    }
+
+    .order-item {
+        gap: 10px;
+        padding: 8px 0;
+    }
+
+    .oi-img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .oi-name {
+        font-size: 14px;
+    }
+
+    .oi-meta {
+        font-size: 12px;
+    }
+
+    .oi-price {
+        font-size: 14px;
+    }
+
+    .order-total {
+        font-size: 15px;
+    }
+
+    .btn-view {
+        width: 100%;
+        text-align: center;
+    }
+}
