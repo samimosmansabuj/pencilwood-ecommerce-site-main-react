@@ -6,14 +6,14 @@ import Breadcrumb from '../components/Breadcrumb';
 
 export default function MyOrders() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isAuthenticated } = useAuth();
   
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       navigate('/login');
       return;
     }
@@ -36,7 +36,7 @@ export default function MyOrders() {
     }
     
     loadOrders();
-  }, [isLoggedIn, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const getStatusLabel = (status) => {
     const s = status ? status.toLowerCase() : "";

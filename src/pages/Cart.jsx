@@ -14,7 +14,7 @@ export default function Cart() {
 
   // Default to selecting all items when cart loads
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (cartItems && cartItems.length > 0) {
       setSelectedIds(cartItems.map(item => item.id));
     }
   }, [cartItems]);
@@ -25,9 +25,9 @@ export default function Cart() {
     );
   };
 
-  const selectedItems = cartItems.filter(item => selectedIds.includes(item.id));
-  const totalQty = selectedItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
-  const subtotal = selectedItems.reduce((sum, item) => sum + Number(item.total || 0), 0);
+  const selectedItems = (cartItems || []).filter(item => selectedIds.includes(item.id));
+  const totalQty = selectedItems.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+  const subtotal = selectedItems.reduce((sum, item) => sum + (Number(item.total) || 0), 0);
 
   const goToCheckout = () => {
     if (selectedIds.length === 0) {
@@ -36,6 +36,13 @@ export default function Cart() {
     }
     localStorage.setItem("checkout_cart_ids", JSON.stringify(selectedIds));
     navigate('/checkout');
+  };
+
+  // Safe image URL builder
+  const getImageUrl = (img) => {
+    if (!img) return "";
+    if (img.startsWith("http")) return img;
+    return API_BASE + img;
   };
 
   return (
@@ -49,7 +56,7 @@ export default function Cart() {
 
       {loading ? (
         <p style={{ padding: '20px' }}>Loading cart...</p>
-      ) : cartItems.length === 0 ? (
+      ) : !cartItems || cartItems.length === 0 ? (
         <div className="cart-empty">
           <div className="empty-icon">🛒</div>
           <div className="empty-title">Your cart is empty</div>
@@ -63,8 +70,11 @@ export default function Cart() {
           <div className="cart-left">
             <div className="cart-items">
               {cartItems.map((item) => {
-                const img = item.image ? (item.image.startsWith("http") ? item.image : API_BASE + item.image) : "";
-                const newPrice = item.price;
+                const img = getImageUrl(item.image);
+                const productName = item.product || item.name || 'Product';
+                const price = item.price || 0;
+                const total = item.total || 0;
+                const quantity = item.quantity || 0;
                 
                 return (
                   <div className="cart-item" key={item.id}>
@@ -74,20 +84,24 @@ export default function Cart() {
                       checked={selectedIds.includes(item.id)}
                       onChange={() => handleSelect(item.id)}
                     />
-                    <img className="cart-img" src={img} alt={item.product} />
+                    {img ? (
+                      <img className="cart-img" src={img} alt={productName} />
+                    ) : (
+                      <div className="cart-img" style={{ background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📦</div>
+                    )}
                     
                     <div className="cart-info">
-                      <div className="cart-name">{item.product}</div>
-                      <div className="cart-total-price">৳ {item.total}</div>
+                      <div className="cart-name">{productName}</div>
+                      <div className="cart-total-price">৳ {total}</div>
                       <div className="cart-subtotal-mini">
-                        {item.quantity} × ৳ {newPrice}
+                        {quantity} × ৳ {price}
                       </div>
                     </div>
 
                     <div className="cart-qty">
-                      <button onClick={() => changeQty(item.id, item.quantity - 1)}>−</button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => changeQty(item.id, item.quantity + 1)}>+</button>
+                      <button onClick={() => changeQty(item.id, quantity - 1)}>−</button>
+                      <span>{quantity}</span>
+                      <button onClick={() => changeQty(item.id, quantity + 1)}>+</button>
                     </div>
 
                     <button className="remove-btn" onClick={() => removeCartItem(item.id)}>×</button>
@@ -104,15 +118,15 @@ export default function Cart() {
               <div id="cartSummaryList">
                 {selectedItems.map(item => (
                   <div className="summary-row" key={item.id}>
-                    <span>{item.product} × {item.quantity}</span>
-                    <span>৳ {item.total}</span>
+                    <span>{item.product || item.name || 'Product'} × {item.quantity || 0}</span>
+                    <span>৳ {item.total || 0}</span>
                   </div>
                 ))}
               </div>
 
               <div className="summary-row">
                 <span>Subtotal</span>
-                <span>৳ {subtotal}</span>
+                <span id="cartSubtotal">৳ {subtotal}</span>
               </div>
 
               <button className="btn-checkout" onClick={goToCheckout}>

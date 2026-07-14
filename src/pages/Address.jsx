@@ -7,7 +7,7 @@ import Breadcrumb from '../components/Breadcrumb';
 
 export default function Address() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isAuthenticated } = useAuth();
   const toast = useToast();
 
   const [addresses, setAddresses] = useState([]);
@@ -22,13 +22,13 @@ export default function Address() {
   const [deliveryCharge, setDeliveryCharge] = useState(0);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       navigate('/login');
       return;
     }
     loadDistricts();
     loadAddresses();
-  }, [isLoggedIn, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const loadDistricts = async () => {
     try {

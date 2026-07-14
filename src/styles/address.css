@@ -8,7 +8,7 @@
 body {
     margin: 0;
     font-family: 'Hind Siliguri', sans-serif;
-    background: #f9f9f9;
+    background: #f0ebe3;
     color: #333;
     font-size: 15px;
     line-height: 1.6;
@@ -17,7 +17,7 @@ body {
 
 /* Container */
 .page {
-    max-width: 900px;
+    /* max-width: 900px; */
     margin: 16px auto;
     padding: 0 16px;
 }
@@ -41,7 +41,7 @@ body {
     background: #fff;
     padding: 18px;
     border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -113,7 +113,7 @@ body {
     background: #fff;
     padding: 20px;
     border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -133,7 +133,8 @@ body {
     padding: 12px 14px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    font-size: 16px; /* prevents zoom on iPhone */
+    font-size: 16px;
+    /* prevents zoom on iPhone */
     outline: none;
     transition: all 0.2s ease;
     background: #fff;
@@ -144,7 +145,7 @@ body {
 .address-form textarea:focus,
 .address-form select:focus {
     border-color: #333;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
 /* Textarea */
@@ -193,27 +194,27 @@ body {
     font-size: 14px;
 }
 
-.address-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    margin-bottom:20px;
+.address-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-.address-count{
-    background:#fff;
-    padding:8px 14px;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:600;
-    box-shadow:0 4px 12px rgba(0,0,0,.06);
+.address-count {
+    background: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
 }
 
-.addr-district{
-    font-size:14px;
-    font-weight:600;
-    color:#333;
+.addr-district {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
 }
 
 /* ====== RESPONSIVE (TABLET) ====== */

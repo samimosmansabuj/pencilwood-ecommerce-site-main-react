@@ -57,8 +57,6 @@
   transition: all var(--t);
   display: flex;
   flex-direction: column;
-  /* gap:6px; */
-  height: 320px;
 }
 
 .prod-card:hover {
@@ -123,7 +121,7 @@
 
 /* BUTTON */
 .prod-cart {
-  margin-top: auto;
+  /* margin-top: auto; */
   padding: 7px;
   border: none;
   border-radius: 6px;
@@ -183,6 +181,7 @@
 
 /* Mobile */
 @media(max-width:600px) {
+
   /* ───────────── FILTER BAR ───────────── */
   .filter-bar {
     gap: 10px;

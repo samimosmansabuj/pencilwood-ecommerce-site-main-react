@@ -13,12 +13,8 @@ body{
 }
 
 /* =========================
-   PAGE
+   HEADER
 ========================= */
-
-.page{
-  padding:20px;
-}
 
 .cart-head{
   display:flex;
@@ -214,9 +210,6 @@ body{
 
 @media (max-width:768px){
 
-  .page{
-    padding:12px;
-  }
 
   .cart-layout{
     display:flex;
@@ -432,7 +425,5 @@ body{
     height:48px;
   }
 
-  body{
-    padding-bottom:260px;
-  }
+
 }

@@ -7,7 +7,7 @@ import Breadcrumb from '../components/Breadcrumb';
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { user, logout, isLoggedIn } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const toast = useToast();
 
   const [fullName, setFullName] = useState('');
@@ -18,7 +18,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       navigate('/login');
       return;
     }
@@ -45,7 +45,7 @@ export default function Profile() {
     }
     
     loadProfile();
-  }, [isLoggedIn, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const saveProfile = async () => {
     try {
